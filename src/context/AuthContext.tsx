@@ -12,6 +12,8 @@ interface AuthContextType {
   logout: () => void;
   switchUser: (userId: string) => void;
   isPM: boolean;
+  isHOD: boolean;
+  isMember: boolean;
   userDiscipline: DisciplineType;
 }
 
@@ -44,18 +46,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = (email: string, password = ''): { success: boolean; message?: string } => {
     const trimmedEmail = email.trim().toLowerCase();
-    const found = usersList.find((u) => u.email.toLowerCase() === trimmedEmail);
+
+    // Support convenient aliases
+    let searchEmail = trimmedEmail;
+    if (trimmedEmail === 'hod@dg5.com' || trimmedEmail === 'hod.elec@dg5.com') {
+      searchEmail = 'electrical@dg5.com';
+    } else if (trimmedEmail === 'member@dg5.com' || trimmedEmail === 'worker@dg5.com') {
+      searchEmail = 'dinesh.j@dg5.com';
+    }
+
+    const found = usersList.find((u) => u.email.toLowerCase() === searchEmail);
 
     if (!found) {
       return { success: false, message: 'Invalid credentials. Please check the registered email.' };
     }
 
-    // Check soft default passwords
-    if (found.role === 'pm' && password && password !== 'admin123') {
-      return { success: false, message: 'Incorrect password for Project Manager. Default is admin123' };
+    // Check default passwords
+    if (found.role === 'pm' && password && password !== 'admin123' && password !== 'pm123') {
+      return { success: false, message: 'Incorrect password for Project Manager. Default is admin123 or pm123' };
     }
-    if (found.role === 'employee' && password && password !== 'emp123') {
-      return { success: false, message: 'Incorrect password for Employee. Default is emp123' };
+    if (found.role === 'hod' && password && password !== 'lead123' && password !== 'hod123') {
+      return { success: false, message: 'Incorrect password for Department Head / Team Lead. Default is lead123' };
+    }
+    if (found.role === 'employee' && password && password !== 'emp123' && password !== 'user123') {
+      return { success: false, message: 'Incorrect password for Team Member. Default is user123 or emp123' };
     }
 
     setCurrentUser(found);
@@ -96,6 +110,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const isPM = currentUser?.role === 'pm';
+  const isHOD = currentUser?.role === 'hod';
+  const isMember = currentUser?.role === 'employee';
   const userDiscipline = currentUser?.discipline || 'Management';
 
   if (!isLoaded) {
@@ -112,6 +128,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         logout,
         switchUser,
         isPM,
+        isHOD,
+        isMember,
         userDiscipline,
       }}
     >

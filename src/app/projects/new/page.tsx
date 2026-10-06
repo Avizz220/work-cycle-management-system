@@ -22,7 +22,7 @@ export default function AddProjectPage() {
   const { isPM, currentUser, switchUser, usersList } = useAuth();
 
   // Project General Details
-  const [code, setCode] = useState(`DG5-PRJ-2026-0${Math.floor(Math.random() * 80 + 10)}`);
+  const [code, setCode] = useState('DG5-PRJ-2026-05');
   const [title, setTitle] = useState('');
   const [client, setClient] = useState('');
   const [location, setLocation] = useState('');
@@ -215,7 +215,7 @@ export default function AddProjectPage() {
             <div
               style={{
                 backgroundColor: '#ffffff',
-                border: '1px solid #000000',
+                border: '1px solid var(--border-light)',
                 borderRadius: 'var(--radius-lg)',
                 padding: '16px 20px',
                 marginBottom: '24px',
@@ -224,15 +224,16 @@ export default function AddProjectPage() {
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
                 gap: '12px',
+                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <ShieldAlert size={22} style={{ color: '#000000', flexShrink: 0 }} />
+                <ShieldAlert size={20} style={{ color: '#0f172a', flexShrink: 0 }} />
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: '0.92rem', color: '#000000' }}>
+                  <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-main)' }}>
                     Project Manager Role Feature
                   </div>
-                  <div style={{ fontSize: '0.8rem', color: '#52525b' }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                     You are currently viewing as <strong>{currentUser?.name} ({currentUser?.discipline} Engineer)</strong>.
                     Project Managers configure new contracts and phases.
                   </div>
@@ -253,15 +254,15 @@ export default function AddProjectPage() {
           )}
 
           {isSuccess ? (
-            <div className="card" style={{ padding: '60px 24px', textAlign: 'center', border: '1px solid #000000' }}>
-              <CheckCircle2 size={56} style={{ color: '#000000', margin: '0 auto 16px' }} />
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#000000' }}>
+            <div className="card" style={{ padding: '48px 24px', textAlign: 'center', border: '1px solid var(--border-light)', backgroundColor: '#ffffff' }}>
+              <CheckCircle2 size={48} style={{ color: '#16a34a', margin: '0 auto 14px' }} />
+              <h2 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-main)' }}>
                 Project & All Phases Successfully Registered!
               </h2>
-              <p style={{ color: '#52525b', marginTop: '8px', fontSize: '0.95rem' }}>
+              <p style={{ color: 'var(--text-secondary)', marginTop: '6px', fontSize: '0.9rem' }}>
                 Project Code: <strong>{code}</strong> • {phases.length} Multidisciplinary Phases Configured.
               </p>
-              <p style={{ color: '#71717a', fontSize: '0.85rem', marginTop: '4px' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', marginTop: '4px' }}>
                 Redirecting to Project Directory...
               </p>
             </div>
@@ -271,47 +272,47 @@ export default function AddProjectPage() {
                 style={{
                   display: 'grid',
                   gridTemplateColumns: 'minmax(0, 1.8fr) minmax(320px, 1fr)',
-                  gap: '28px',
+                  gap: '24px',
                   alignItems: 'start',
                 }}
               >
                 {/* Left Column: Form Details & Phase Builder */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                  {/* Phase 1: Project Metadata Card */}
-                  <div className="card" style={{ padding: '28px', border: '1px solid #e4e4e7', backgroundColor: '#ffffff' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                  {/* Step 1: Project Metadata Card */}
+                  <div className="card" style={{ padding: '24px', border: '1px solid var(--border-light)', backgroundColor: '#ffffff' }}>
                     <div
                       style={{
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        marginBottom: '20px',
-                        borderBottom: '1px solid #e4e4e7',
+                        marginBottom: '18px',
+                        borderBottom: '1px solid var(--border-light)',
                         paddingBottom: '14px',
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <div
                           style={{
-                            width: '32px',
-                            height: '32px',
+                            width: '30px',
+                            height: '30px',
                             borderRadius: '50%',
-                            border: '1.5px solid #000000',
-                            backgroundColor: '#ffffff',
-                            color: '#000000',
+                            border: '1.5px solid #cbd5e1',
+                            backgroundColor: '#f8fafc',
+                            color: '#0f172a',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            fontWeight: 800,
-                            fontSize: '0.88rem',
+                            fontWeight: 700,
+                            fontSize: '0.84rem',
                           }}
                         >
                           1
                         </div>
                         <div>
-                          <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#000000' }}>
+                          <h3 style={{ fontSize: '1.08rem', fontWeight: 700, color: 'var(--text-main)' }}>
                             Project Contract Overview
                           </h3>
-                          <p style={{ fontSize: '0.8rem', color: '#52525b' }}>
+                          <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                             Fundamental project details, client metadata, and budget
                           </p>
                         </div>
@@ -321,14 +322,14 @@ export default function AddProjectPage() {
                         type="button"
                         onClick={handleLoadTemplate}
                         className="btn btn-secondary btn-sm"
-                        style={{ fontSize: '0.78rem', gap: '6px' }}
+                        style={{ fontSize: '0.76rem', gap: '6px' }}
                       >
-                        <Sparkles size={13} style={{ color: '#000000' }} />
+                        <Sparkles size={13} style={{ color: '#64748b' }} />
                         <span>Fill Sample Data</span>
                       </button>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '14px' }}>
                       <div className="input-group">
                         <label className="input-label">Project Code *</label>
                         <input
@@ -353,7 +354,7 @@ export default function AddProjectPage() {
                       </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
                       <div className="input-group">
                         <label className="input-label">Client / Developer Entity *</label>
                         <input
@@ -378,7 +379,7 @@ export default function AddProjectPage() {
                       </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
                       <div className="input-group">
                         <label className="input-label">Category</label>
                         <select
@@ -416,7 +417,7 @@ export default function AddProjectPage() {
                       </div>
                     </div>
 
-                    <div className="input-group">
+                    <div className="input-group" style={{ marginBottom: 0 }}>
                       <label className="input-label">Engineering Scope Summary</label>
                       <textarea
                         className="textarea-input"
@@ -428,41 +429,41 @@ export default function AddProjectPage() {
                     </div>
                   </div>
 
-                  {/* Phase 2: Multidisciplinary Phases & Deadlines Builder */}
-                  <div className="card" style={{ padding: '28px', border: '1px solid #e4e4e7', backgroundColor: '#ffffff' }}>
+                  {/* Step 2: Multidisciplinary Phases & Deadlines Builder */}
+                  <div className="card" style={{ padding: '24px', border: '1px solid var(--border-light)', backgroundColor: '#ffffff' }}>
                     <div
                       style={{
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        marginBottom: '20px',
-                        borderBottom: '1px solid #e4e4e7',
+                        marginBottom: '18px',
+                        borderBottom: '1px solid var(--border-light)',
                         paddingBottom: '14px',
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <div
                           style={{
-                            width: '32px',
-                            height: '32px',
+                            width: '30px',
+                            height: '30px',
                             borderRadius: '50%',
-                            border: '1.5px solid #000000',
-                            backgroundColor: '#ffffff',
-                            color: '#000000',
+                            border: '1.5px solid #cbd5e1',
+                            backgroundColor: '#f8fafc',
+                            color: '#0f172a',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            fontWeight: 800,
-                            fontSize: '0.88rem',
+                            fontWeight: 700,
+                            fontSize: '0.84rem',
                           }}
                         >
                           2
                         </div>
                         <div>
-                          <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#000000' }}>
+                          <h3 style={{ fontSize: '1.08rem', fontWeight: 700, color: 'var(--text-main)' }}>
                             Phase Breakdown & Deadlines ({phases.length} Phases)
                           </h3>
-                          <p style={{ fontSize: '0.8rem', color: '#52525b' }}>
+                          <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                             Assign engineering sections, deadlines, and deliverables for each milestone
                           </p>
                         </div>
@@ -474,21 +475,21 @@ export default function AddProjectPage() {
                         className="btn btn-secondary btn-sm"
                         style={{ gap: '6px' }}
                       >
-                        <Plus size={15} />
+                        <Plus size={14} />
                         <span>Add Another Phase</span>
                       </button>
                     </div>
 
                     {/* Phase Cards List */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                       {phases.map((ph) => (
                         <div
                           key={ph.id}
                           style={{
-                            border: '1px solid #e4e4e7',
-                            borderRadius: 'var(--radius-lg)',
-                            padding: '18px 20px',
-                            backgroundColor: '#fafafa',
+                            border: '1px solid var(--border-light)',
+                            borderRadius: 'var(--radius-md)',
+                            padding: '16px 18px',
+                            backgroundColor: '#f8fafc',
                           }}
                         >
                           <div
@@ -496,30 +497,31 @@ export default function AddProjectPage() {
                               display: 'flex',
                               justifyContent: 'space-between',
                               alignItems: 'center',
-                              marginBottom: '14px',
+                              marginBottom: '12px',
                             }}
                           >
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                               <span
                                 style={{
-                                  backgroundColor: '#000000',
-                                  color: '#ffffff',
-                                  fontSize: '0.75rem',
-                                  fontWeight: 800,
+                                  backgroundColor: '#ffffff',
+                                  color: '#334155',
+                                  fontSize: '0.72rem',
+                                  fontWeight: 600,
                                   padding: '2px 8px',
                                   borderRadius: '4px',
+                                  border: '1px solid var(--border-light)',
                                   whiteSpace: 'nowrap',
                                 }}
                               >
                                 Phase {ph.phaseNumber}
                               </span>
-                              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: '#27272a', cursor: 'pointer' }}>
+                              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.76rem', color: 'var(--text-secondary)', cursor: 'pointer' }}>
                                 <input
                                   type="checkbox"
                                   checked={ph.critical}
                                   onChange={(e) => handleUpdatePhase(ph.id, 'critical', e.target.checked)}
                                 />
-                                <span style={{ fontWeight: ph.critical ? 800 : 500, color: '#000000' }}>
+                                <span style={{ fontWeight: ph.critical ? 600 : 400, color: ph.critical ? '#991b1b' : 'var(--text-secondary)' }}>
                                   Critical Path Milestone
                                 </span>
                               </label>
@@ -530,20 +532,21 @@ export default function AddProjectPage() {
                                 type="button"
                                 onClick={() => handleRemovePhase(ph.id)}
                                 style={{
-                                  color: '#000000',
+                                  color: '#94a3b8',
                                   padding: '4px',
                                   borderRadius: '4px',
+                                  transition: 'color 0.15s ease',
                                 }}
                                 title="Remove phase"
                               >
-                                <Trash2 size={16} />
+                                <Trash2 size={15} />
                               </button>
                             )}
                           </div>
 
-                          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '14px', marginBottom: '12px' }}>
+                          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '12px', marginBottom: '10px' }}>
                             <div>
-                              <label className="input-label" style={{ fontSize: '0.78rem' }}>Phase Name *</label>
+                              <label className="input-label" style={{ fontSize: '0.76rem' }}>Phase Name *</label>
                               <input
                                 type="text"
                                 className="input-text"
@@ -554,7 +557,7 @@ export default function AddProjectPage() {
                             </div>
 
                             <div>
-                              <label className="input-label" style={{ fontSize: '0.78rem' }}>Assigned Section *</label>
+                              <label className="input-label" style={{ fontSize: '0.76rem' }}>Assigned Section *</label>
                               <select
                                 className="select-input"
                                 value={ph.assignedSection}
@@ -569,7 +572,7 @@ export default function AddProjectPage() {
                             </div>
 
                             <div>
-                              <label className="input-label" style={{ fontSize: '0.78rem' }}>Lead Person</label>
+                              <label className="input-label" style={{ fontSize: '0.76rem' }}>Lead Person</label>
                               <input
                                 type="text"
                                 className="input-text"
@@ -579,9 +582,9 @@ export default function AddProjectPage() {
                             </div>
                           </div>
 
-                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
                             <div>
-                              <label className="input-label" style={{ fontSize: '0.78rem' }}>Start Date</label>
+                              <label className="input-label" style={{ fontSize: '0.76rem' }}>Start Date</label>
                               <input
                                 type="date"
                                 className="input-text"
@@ -591,7 +594,7 @@ export default function AddProjectPage() {
                             </div>
 
                             <div>
-                              <label className="input-label" style={{ fontSize: '0.78rem' }}>Target Phase Deadline *</label>
+                              <label className="input-label" style={{ fontSize: '0.76rem' }}>Target Phase Deadline *</label>
                               <input
                                 type="date"
                                 className="input-text"
@@ -604,7 +607,7 @@ export default function AddProjectPage() {
 
                           {/* Deliverables tags & input */}
                           <div>
-                            <label className="input-label" style={{ fontSize: '0.78rem' }}>
+                            <label className="input-label" style={{ fontSize: '0.76rem' }}>
                               Deliverables & Submissions ({ph.deliverables.length})
                             </label>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '8px' }}>
@@ -616,12 +619,12 @@ export default function AddProjectPage() {
                                     alignItems: 'center',
                                     gap: '6px',
                                     backgroundColor: '#ffffff',
-                                    border: '1px solid #d4d4d8',
+                                    border: '1px solid var(--border-light)',
                                     borderRadius: '4px',
-                                    padding: '3px 8px',
-                                    fontSize: '0.75rem',
-                                    color: '#000000',
-                                    fontWeight: 600,
+                                    padding: '2px 8px',
+                                    fontSize: '0.72rem',
+                                    color: '#334155',
+                                    fontWeight: 500,
                                     whiteSpace: 'nowrap',
                                   }}
                                 >
@@ -629,7 +632,7 @@ export default function AddProjectPage() {
                                   <button
                                     type="button"
                                     onClick={() => handleRemoveDeliverable(ph.id, dIdx)}
-                                    style={{ color: '#000000', fontSize: '0.9rem', lineHeight: 1 }}
+                                    style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1 }}
                                   >
                                     ×
                                   </button>
@@ -675,27 +678,28 @@ export default function AddProjectPage() {
                   <div
                     className="card"
                     style={{
-                      padding: '26px',
-                      border: '1px solid #000000',
+                      padding: '22px',
+                      border: '1px solid var(--border-light)',
                       backgroundColor: '#ffffff',
+                      boxShadow: 'var(--shadow-sm)',
                     }}
                   >
                     <div
                       style={{
-                        fontSize: '0.75rem',
-                        fontWeight: 800,
+                        fontSize: '0.72rem',
+                        fontWeight: 600,
                         textTransform: 'uppercase',
-                        color: '#000000',
+                        color: 'var(--text-muted)',
                         marginBottom: '6px',
-                        letterSpacing: '0.06em',
+                        letterSpacing: '0.04em',
                       }}
                     >
                       Summary Preview
                     </div>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#000000', marginBottom: '4px' }}>
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '3px' }}>
                       {title || 'Untitled Project'}
                     </h3>
-                    <div style={{ fontSize: '0.8rem', color: '#52525b', marginBottom: '16px' }}>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: '14px' }}>
                       Code: <strong>{code}</strong> • {category}
                     </div>
 
@@ -703,46 +707,47 @@ export default function AddProjectPage() {
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '8px',
-                        backgroundColor: '#fafafa',
-                        borderRadius: '8px',
-                        padding: '14px',
-                        marginBottom: '18px',
-                        fontSize: '0.82rem',
-                        border: '1px solid #e4e4e7',
+                        gap: '6px',
+                        backgroundColor: '#f8fafc',
+                        borderRadius: 'var(--radius-md)',
+                        padding: '12px 14px',
+                        marginBottom: '16px',
+                        fontSize: '0.8rem',
+                        border: '1px solid var(--border-light)',
                       }}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: '#71717a' }}>Client:</span>
-                        <span style={{ fontWeight: 700, color: '#000000' }}>{client || 'Not specified'}</span>
+                        <span style={{ color: 'var(--text-muted)' }}>Client:</span>
+                        <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>{client || 'Not specified'}</span>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: '#71717a' }}>Location:</span>
-                        <span style={{ fontWeight: 700, color: '#000000' }}>{location || 'Colombo'}</span>
+                        <span style={{ color: 'var(--text-muted)' }}>Location:</span>
+                        <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>{location || 'Colombo'}</span>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: '#71717a' }}>Budget:</span>
-                        <span style={{ fontWeight: 800, color: '#000000' }}>{budget || '$0'}</span>
+                        <span style={{ color: 'var(--text-muted)' }}>Budget:</span>
+                        <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>{budget || '$0'}</span>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: '#71717a' }}>Target Completion:</span>
-                        <span style={{ fontWeight: 700, color: '#000000' }}>{targetCompletion}</span>
+                        <span style={{ color: 'var(--text-muted)' }}>Target Completion:</span>
+                        <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>{targetCompletion}</span>
                       </div>
                     </div>
 
-                    <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginBottom: '18px' }}>
                       <div
                         style={{
-                          fontSize: '0.78rem',
-                          fontWeight: 800,
+                          fontSize: '0.74rem',
+                          fontWeight: 600,
                           textTransform: 'uppercase',
-                          color: '#000000',
+                          color: 'var(--text-muted)',
                           marginBottom: '8px',
+                          letterSpacing: '0.02em',
                         }}
                       >
                         Configured Phases ({phases.length})
                       </div>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '220px', overflowY: 'auto' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', maxHeight: '200px', overflowY: 'auto' }}>
                         {phases.map((p) => (
                           <div
                             key={p.id}
@@ -750,17 +755,17 @@ export default function AddProjectPage() {
                               display: 'flex',
                               justifyContent: 'space-between',
                               alignItems: 'center',
-                              fontSize: '0.76rem',
+                              fontSize: '0.75rem',
                               padding: '6px 8px',
                               backgroundColor: '#ffffff',
-                              border: '1px solid #e4e4e7',
+                              border: '1px solid var(--border-light)',
                               borderRadius: '4px',
                             }}
                           >
-                            <span style={{ fontWeight: 700, color: '#000000', maxWidth: '60%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            <span style={{ fontWeight: 500, color: 'var(--text-secondary)', maxWidth: '60%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                               P{p.phaseNumber}: {p.name}
                             </span>
-                            <span style={{ color: '#52525b', whiteSpace: 'nowrap' }}>{p.deadline}</span>
+                            <span style={{ color: 'var(--text-muted)', whiteSpace: 'nowrap', fontSize: '0.72rem' }}>{p.deadline}</span>
                           </div>
                         ))}
                       </div>
@@ -769,9 +774,9 @@ export default function AddProjectPage() {
                     <button
                       type="submit"
                       className="btn btn-primary btn-lg"
-                      style={{ width: '100%', gap: '8px', fontWeight: 800 }}
+                      style={{ width: '100%', gap: '8px', fontWeight: 600 }}
                     >
-                      <FolderPlus size={18} />
+                      <FolderPlus size={16} />
                       <span>Save & Publish Project</span>
                     </button>
                   </div>

@@ -36,7 +36,7 @@ export default function DeadlinesSchedulePage() {
         />
 
         <main className="main-content">
-          {/* Header Summary Cards - Crisp Light White Style with Pure Black Icons */}
+          {/* Header Summary Cards - Crisp Light White Style with Pure Black/Dark Icons */}
           <div
             style={{
               display: 'grid',
@@ -47,78 +47,78 @@ export default function DeadlinesSchedulePage() {
           >
             {/* Overdue Card */}
             <div
-              className="card"
+              className="card card-interactive"
               style={{
                 padding: '20px',
-                border: '1px solid #000000',
+                border: '1px solid var(--border-light)',
                 backgroundColor: '#ffffff',
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', color: '#000000', letterSpacing: '0.04em' }}>
+                <span style={{ fontSize: '0.74rem', fontWeight: 600, textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
                   Overdue Submissions
                 </span>
-                <AlertTriangle size={20} style={{ color: '#000000' }} />
+                <AlertTriangle size={20} style={{ color: '#991b1b' }} />
               </div>
-              <div style={{ fontSize: '1.9rem', fontWeight: 800, color: '#000000', marginTop: '6px' }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: 700, color: '#991b1b', marginTop: '6px' }}>
                 {overdue.length} Phases
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#71717a', marginTop: '4px' }}>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
                 Requires priority coordination
               </div>
             </div>
 
             {/* Within 7 Days */}
             <div
-              className="card"
+              className="card card-interactive"
               style={{
                 padding: '20px',
-                border: '1px solid #000000',
+                border: '1px solid var(--border-light)',
                 backgroundColor: '#ffffff',
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', color: '#000000', letterSpacing: '0.04em' }}>
+                <span style={{ fontSize: '0.74rem', fontWeight: 600, textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
                   Due Within 7 Days
                 </span>
-                <Clock size={20} style={{ color: '#000000' }} />
+                <Clock size={20} style={{ color: '#92400e' }} />
               </div>
-              <div style={{ fontSize: '1.9rem', fontWeight: 800, color: '#000000', marginTop: '6px' }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)', marginTop: '6px' }}>
                 {within7Days.length} Deliverables
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#71717a', marginTop: '4px' }}>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
                 Sprint milestones
               </div>
             </div>
 
             {/* Within 30 Days */}
-            <div className="card" style={{ padding: '20px', border: '1px solid #e4e4e7', backgroundColor: '#ffffff' }}>
+            <div className="card card-interactive" style={{ padding: '20px', border: '1px solid var(--border-light)', backgroundColor: '#ffffff' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', color: '#71717a', letterSpacing: '0.04em' }}>
+                <span style={{ fontSize: '0.74rem', fontWeight: 600, textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
                   Due Within 30 Days
                 </span>
-                <Calendar size={20} style={{ color: '#000000' }} />
+                <Calendar size={20} style={{ color: '#0f172a' }} />
               </div>
-              <div style={{ fontSize: '1.9rem', fontWeight: 800, color: '#000000', marginTop: '6px' }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)', marginTop: '6px' }}>
                 {within30Days.length} Phases
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#71717a', marginTop: '4px' }}>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
                 Upcoming statutory approvals
               </div>
             </div>
 
             {/* Total Milestones */}
-            <div className="card" style={{ padding: '20px', border: '1px solid #e4e4e7', backgroundColor: '#ffffff' }}>
+            <div className="card card-interactive" style={{ padding: '20px', border: '1px solid var(--border-light)', backgroundColor: '#ffffff' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', color: '#71717a', letterSpacing: '0.04em' }}>
+                <span style={{ fontSize: '0.74rem', fontWeight: 600, textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
                   Total Tracked Phases
                 </span>
-                <CheckCircle2 size={20} style={{ color: '#000000' }} />
+                <CheckCircle2 size={20} style={{ color: '#0f172a' }} />
               </div>
-              <div style={{ fontSize: '1.9rem', fontWeight: 800, color: '#000000', marginTop: '6px' }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)', marginTop: '6px' }}>
                 {allDeadlines.length}
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#71717a', marginTop: '4px' }}>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
                 Across all DG5 contracts
               </div>
             </div>

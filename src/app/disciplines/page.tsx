@@ -64,7 +64,7 @@ export default function DisciplineHubsPage() {
       case 'Electrical':
         return {
           name: 'Electrical Engineering & Power Systems',
-          icon: <Zap size={22} style={{ color: '#000000' }} />,
+          icon: <Zap size={20} style={{ color: '#0f172a' }} />,
           lead: 'Eng. Kevin Fernando',
           description:
             'Responsible for 11kV/33kV substations, transformer risers, emergency diesel generators, LEED energy efficiency, and lightning protection systems.',
@@ -72,7 +72,7 @@ export default function DisciplineHubsPage() {
       case 'Civil':
         return {
           name: 'Civil, Geotechnical & Structural Engineering',
-          icon: <Building2 size={22} style={{ color: '#000000' }} />,
+          icon: <Building2 size={20} style={{ color: '#0f172a' }} />,
           lead: 'Eng. Dilshan Perera',
           description:
             'Specializes in diaphragm walls, deep bored piling, post-tensioned bridge girders, seismic structural analysis, and highway stormwater earthworks.',
@@ -80,7 +80,7 @@ export default function DisciplineHubsPage() {
       case 'Plumbing':
         return {
           name: 'Plumbing, MEP & Fire Protection Systems',
-          icon: <Droplets size={22} style={{ color: '#000000' }} />,
+          icon: <Droplets size={20} style={{ color: '#0f172a' }} />,
           lead: 'Eng. Kasun Silva',
           description:
             'Designs hydro-pneumatic booster pumping risers, medical gas pipework, wastewater bio-digesters, and NFPA compliant fire suppression sprinkler grids.',
@@ -88,7 +88,7 @@ export default function DisciplineHubsPage() {
       case 'Architectural':
         return {
           name: 'Architectural & Façade Engineering',
-          icon: <Compass size={22} style={{ color: '#000000' }} />,
+          icon: <Compass size={20} style={{ color: '#0f172a' }} />,
           lead: 'Arch. Nimmi Wickramasinghe',
           description:
             'Focuses on spatial planning, curtain wall façade engineering, sustainable building envelopes, urban zoning statutory compliance, and construction detailing.',
@@ -96,7 +96,7 @@ export default function DisciplineHubsPage() {
       default:
         return {
           name: 'Multidisciplinary Department',
-          icon: <Users size={22} style={{ color: '#000000' }} />,
+          icon: <Users size={20} style={{ color: '#0f172a' }} />,
           lead: 'Project Management Division',
           description: 'Multidisciplinary coordination.',
         };
@@ -116,14 +116,14 @@ export default function DisciplineHubsPage() {
         />
 
         <main className="main-content">
-          {/* Discipline Navigation Tabs */}
+          {/* Discipline Navigation Tabs - Styled cleanly matching enterprise standard */}
           <div
             style={{
               display: 'flex',
-              gap: '10px',
-              borderBottom: '1px solid #000000',
-              paddingBottom: '16px',
-              marginBottom: '24px',
+              gap: '8px',
+              borderBottom: '1px solid var(--border-light)',
+              paddingBottom: '14px',
+              marginBottom: '20px',
               overflowX: 'auto',
             }}
           >
@@ -137,19 +137,19 @@ export default function DisciplineHubsPage() {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '10px',
-                    padding: '12px 20px',
+                    gap: '8px',
+                    padding: '8px 16px',
                     borderRadius: 'var(--radius-md)',
-                    fontWeight: 800,
-                    fontSize: '0.92rem',
-                    backgroundColor: isActive ? '#000000' : '#ffffff',
-                    color: isActive ? '#ffffff' : '#000000',
-                    border: '1px solid #000000',
+                    fontWeight: isActive ? 600 : 500,
+                    fontSize: '0.85rem',
+                    backgroundColor: isActive ? '#0f172a' : '#ffffff',
+                    color: isActive ? '#ffffff' : '#475569',
+                    border: `1px solid ${isActive ? '#0f172a' : 'var(--border-light)'}`,
                     transition: 'all 0.15s ease',
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  <span style={{ color: isActive ? '#ffffff' : '#000000' }}>
+                  <span style={{ color: isActive ? '#ffffff' : '#64748b' }}>
                     {info.icon}
                   </span>
                   <span>{disc} Section</span>
@@ -162,13 +162,11 @@ export default function DisciplineHubsPage() {
           <div
             className="card"
             style={{
-              marginBottom: '24px',
-              padding: '26px 30px',
-              borderTop: '1px solid #e4e4e7',
-              borderRight: '1px solid #e4e4e7',
-              borderBottom: '1px solid #e4e4e7',
-              borderLeft: '5px solid #000000',
+              marginBottom: '20px',
+              padding: '22px 26px',
+              border: '1px solid var(--border-light)',
               backgroundColor: '#ffffff',
+              boxShadow: 'var(--shadow-sm)',
             }}
           >
             <div
@@ -177,33 +175,33 @@ export default function DisciplineHubsPage() {
                 justifyContent: 'space-between',
                 alignItems: 'flex-start',
                 flexWrap: 'wrap',
-                gap: '16px',
+                gap: '14px',
               }}
             >
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                  <span className="badge badge-dark" style={{ fontSize: '0.72rem' }}>
+                  <span className="badge badge-subtle">
                     {activeDiscipline} Division
                   </span>
-                  <span style={{ fontSize: '0.8rem', color: '#52525b' }}>
-                    • Lead Engineer: <strong>{currentInfo.lead}</strong>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                    • Lead Engineer: <strong style={{ color: 'var(--text-secondary)' }}>{currentInfo.lead}</strong>
                   </span>
                 </div>
-                <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#000000' }}>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-main)', margin: 0 }}>
                   {currentInfo.name}
                 </h2>
-                <p style={{ fontSize: '0.86rem', color: '#27272a', marginTop: '6px', maxWidth: '780px' }}>
+                <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '4px', maxWidth: '780px', lineHeight: 1.5 }}>
                   {currentInfo.description}
                 </p>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
                 <button
                   onClick={() => setIsUploadModalOpen(true)}
                   className="btn btn-primary btn-sm"
-                  style={{ gap: '6px', fontWeight: 700 }}
+                  style={{ gap: '6px', fontWeight: 600 }}
                 >
-                  <UploadCloud size={16} />
+                  <UploadCloud size={15} />
                   <span>Upload {activeDiscipline} Drawing</span>
                 </button>
               </div>
@@ -213,10 +211,10 @@ export default function DisciplineHubsPage() {
             <div
               style={{
                 display: 'flex',
-                gap: '12px',
-                marginTop: '20px',
-                borderTop: '1px solid #e4e4e7',
-                paddingTop: '16px',
+                gap: '10px',
+                marginTop: '16px',
+                borderTop: '1px solid var(--border-light)',
+                paddingTop: '14px',
               }}
             >
               <button
@@ -224,17 +222,17 @@ export default function DisciplineHubsPage() {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  padding: '9px 18px',
+                  gap: '6px',
+                  padding: '7px 14px',
                   borderRadius: 'var(--radius-md)',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  backgroundColor: activeSubTab === 'communication' ? '#000000' : '#ffffff',
-                  color: activeSubTab === 'communication' ? '#ffffff' : '#000000',
-                  border: '1px solid #000000',
+                  fontSize: '0.82rem',
+                  fontWeight: activeSubTab === 'communication' ? 600 : 500,
+                  backgroundColor: activeSubTab === 'communication' ? '#0f172a' : '#ffffff',
+                  color: activeSubTab === 'communication' ? '#ffffff' : '#475569',
+                  border: `1px solid ${activeSubTab === 'communication' ? '#0f172a' : 'var(--border-light)'}`,
                 }}
               >
-                <MessageSquare size={16} />
+                <MessageSquare size={14} />
                 <span>Discussion Board ({messages.length})</span>
               </button>
 
@@ -243,17 +241,17 @@ export default function DisciplineHubsPage() {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  padding: '9px 18px',
+                  gap: '6px',
+                  padding: '7px 14px',
                   borderRadius: 'var(--radius-md)',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  backgroundColor: activeSubTab === 'files' ? '#000000' : '#ffffff',
-                  color: activeSubTab === 'files' ? '#ffffff' : '#000000',
-                  border: '1px solid #000000',
+                  fontSize: '0.82rem',
+                  fontWeight: activeSubTab === 'files' ? 600 : 500,
+                  backgroundColor: activeSubTab === 'files' ? '#0f172a' : '#ffffff',
+                  color: activeSubTab === 'files' ? '#ffffff' : '#475569',
+                  border: `1px solid ${activeSubTab === 'files' ? '#0f172a' : 'var(--border-light)'}`,
                 }}
               >
-                <FileCode size={16} />
+                <FileCode size={14} />
                 <span>Drawings & Document Vault ({files.length})</span>
               </button>
             </div>
@@ -265,44 +263,45 @@ export default function DisciplineHubsPage() {
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'minmax(0, 2fr) minmax(280px, 1fr)',
-                gap: '24px',
+                gap: '20px',
                 alignItems: 'start',
               }}
             >
               {/* Message Feed & Input Box */}
-              <div className="card" style={{ padding: '0', overflow: 'hidden', border: '1px solid #000000' }}>
+              <div className="card" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--border-light)' }}>
                 <div
                   style={{
-                    padding: '16px 20px',
-                    borderBottom: '1px solid #000000',
-                    backgroundColor: '#f4f4f5',
+                    padding: '14px 18px',
+                    borderBottom: '1px solid var(--border-light)',
+                    backgroundColor: '#ffffff',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
                   }}
                 >
-                  <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#000000' }}>
+                  <span style={{ fontSize: '0.86rem', fontWeight: 600, color: 'var(--text-main)' }}>
                     {activeDiscipline} Technical Discussion Feed
                   </span>
-                  <span style={{ fontSize: '0.76rem', color: '#52525b' }}>
-                    Posting as: <strong>{currentUser?.name}</strong>
+                  <span style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>
+                    Posting as: <strong style={{ color: 'var(--text-secondary)' }}>{currentUser?.name}</strong>
                   </span>
                 </div>
 
                 {/* Message List */}
                 <div
                   style={{
-                    padding: '20px',
+                    padding: '16px 18px',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '16px',
+                    gap: '14px',
                     minHeight: '380px',
                     maxHeight: '520px',
                     overflowY: 'auto',
+                    backgroundColor: '#f8fafc',
                   }}
                 >
                   {messages.length === 0 ? (
-                    <div style={{ padding: '40px 20px', textAlign: 'center', color: '#71717a' }}>
+                    <div style={{ padding: '40px 20px', textAlign: 'center', color: 'var(--text-muted)' }}>
                       No discussions in this section yet. Start the conversation below!
                     </div>
                   ) : (
@@ -313,59 +312,70 @@ export default function DisciplineHubsPage() {
                           display: 'flex',
                           gap: '12px',
                           backgroundColor: '#ffffff',
-                          border: msg.urgent ? '2px solid #000000' : '1px solid #e4e4e7',
+                          border: `1px solid ${msg.urgent ? '#fde68a' : 'var(--border-light)'}`,
                           borderRadius: '8px',
-                          padding: '16px',
+                          padding: '14px',
+                          boxShadow: 'var(--shadow-sm)',
                         }}
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={msg.senderAvatar}
                           alt={msg.senderName}
-                          style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', border: '1px solid #000000' }}
+                          style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--border-light)', flexShrink: 0 }}
                         />
 
-                        <div style={{ flex: 1 }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                              <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#000000' }}>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '6px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                              <span style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--text-main)' }}>
                                 {msg.senderName}
                               </span>
-                              <span style={{ fontSize: '0.74rem', color: '#71717a' }}>
+                              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
                                 ({msg.senderRole})
                               </span>
                               {msg.urgent && (
-                                <span className="badge badge-dark" style={{ fontSize: '0.65rem' }}>
+                                <span
+                                  style={{
+                                    fontSize: '0.66rem',
+                                    fontWeight: 600,
+                                    backgroundColor: '#fffbeb',
+                                    color: '#92400e',
+                                    border: '1px solid #fde68a',
+                                    padding: '1px 6px',
+                                    borderRadius: '4px',
+                                  }}
+                                >
                                   Urgent Priority
                                 </span>
                               )}
                             </div>
-                            <span style={{ fontSize: '0.72rem', color: '#71717a' }}>
+                            <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
                               {msg.timestamp}
                             </span>
                           </div>
 
-                          <p style={{ fontSize: '0.86rem', color: '#000000', marginTop: '6px', lineHeight: 1.5 }}>
+                          <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '4px', lineHeight: 1.5 }}>
                             {msg.content}
                           </p>
 
                           {msg.attachmentName && (
                             <div
                               style={{
-                                marginTop: '10px',
+                                marginTop: '8px',
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '6px',
-                                backgroundColor: '#f4f4f5',
-                                padding: '5px 12px',
+                                backgroundColor: '#f1f5f9',
+                                padding: '4px 10px',
                                 borderRadius: '4px',
-                                border: '1px solid #000000',
-                                fontSize: '0.78rem',
-                                color: '#000000',
-                                fontWeight: 700,
+                                border: '1px solid var(--border-light)',
+                                fontSize: '0.74rem',
+                                color: 'var(--text-secondary)',
+                                fontWeight: 500,
                               }}
                             >
-                              <Paperclip size={13} style={{ color: '#000000' }} />
+                              <Paperclip size={12} style={{ color: '#64748b' }} />
                               <span>{msg.attachmentName}</span>
                             </div>
                           )}
@@ -379,12 +389,12 @@ export default function DisciplineHubsPage() {
                 <form
                   onSubmit={handleSendMessage}
                   style={{
-                    padding: '16px 20px',
-                    borderTop: '1px solid #000000',
+                    padding: '14px 18px',
+                    borderTop: '1px solid var(--border-light)',
                     backgroundColor: '#ffffff',
                   }}
                 >
-                  <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
+                  <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-end' }}>
                     <div style={{ flex: 1 }}>
                       <textarea
                         className="textarea-input"
@@ -393,16 +403,16 @@ export default function DisciplineHubsPage() {
                         value={messageInput}
                         onChange={(e) => setMessageInput(e.target.value)}
                         required
-                        style={{ border: '1px solid #d4d4d8' }}
+                        style={{ border: '1px solid var(--border-light)', fontSize: '0.82rem' }}
                       />
                       <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '6px' }}>
-                        <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.75rem', color: '#000000', cursor: 'pointer' }}>
+                        <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.74rem', color: 'var(--text-muted)', cursor: 'pointer' }}>
                           <input
                             type="checkbox"
                             checked={isUrgentMsg}
                             onChange={(e) => setIsUrgentMsg(e.target.checked)}
                           />
-                          <span style={{ fontWeight: isUrgentMsg ? 800 : 500 }}>
+                          <span style={{ fontWeight: isUrgentMsg ? 600 : 400, color: isUrgentMsg ? '#92400e' : 'var(--text-muted)' }}>
                             Flag as Urgent Priority
                           </span>
                         </label>
@@ -412,9 +422,9 @@ export default function DisciplineHubsPage() {
                     <button
                       type="submit"
                       className="btn btn-primary"
-                      style={{ padding: '10px 20px', gap: '6px', fontWeight: 700 }}
+                      style={{ padding: '8px 16px', gap: '6px', fontWeight: 600 }}
                     >
-                      <Send size={16} />
+                      <Send size={15} />
                       <span>Post</span>
                     </button>
                   </div>
@@ -422,12 +432,12 @@ export default function DisciplineHubsPage() {
               </div>
 
               {/* Section Roster */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                <div className="card" style={{ padding: '22px', border: '1px solid #000000' }}>
-                  <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#000000', marginBottom: '14px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div className="card" style={{ padding: '18px', border: '1px solid var(--border-light)', backgroundColor: '#ffffff' }}>
+                  <h4 style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-main)', marginBottom: '12px' }}>
                     {activeDiscipline} Section Team Members
                   </h4>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {sectionEngineers.map((user) => (
                       <div
                         key={user.id}
@@ -435,23 +445,23 @@ export default function DisciplineHubsPage() {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '10px',
-                          padding: '10px',
+                          padding: '8px 10px',
                           borderRadius: '6px',
-                          backgroundColor: '#f4f4f5',
-                          border: '1px solid #e4e4e7',
+                          backgroundColor: '#f8fafc',
+                          border: '1px solid var(--border-light)',
                         }}
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={user.avatar}
                           alt={user.name}
-                          style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '1px solid #000000' }}
+                          style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--border-light)', flexShrink: 0 }}
                         />
-                        <div style={{ lineHeight: 1.2 }}>
-                          <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#000000' }}>
+                        <div style={{ lineHeight: 1.2, minWidth: 0 }}>
+                          <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {user.name}
                           </div>
-                          <div style={{ fontSize: '0.72rem', color: '#52525b' }}>
+                          <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {user.title}
                           </div>
                         </div>
@@ -460,11 +470,11 @@ export default function DisciplineHubsPage() {
                   </div>
                 </div>
 
-                <div className="card" style={{ padding: '20px', backgroundColor: '#f4f4f5', border: '1px solid #d4d4d8' }}>
-                  <h4 style={{ fontSize: '0.88rem', fontWeight: 800, color: '#000000', marginBottom: '8px' }}>
+                <div className="card" style={{ padding: '16px', backgroundColor: '#f8fafc', border: '1px solid var(--border-light)' }}>
+                  <h4 style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-main)', marginBottom: '6px' }}>
                     Section Guidelines
                   </h4>
-                  <p style={{ fontSize: '0.78rem', color: '#27272a', lineHeight: 1.5 }}>
+                  <p style={{ fontSize: '0.76rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
                     • Electrical schematics must comply with CEB regulations and British Standard 7671.
                     <br />
                     • Civil calculations require structural lead sign-off prior to site execution.
@@ -478,7 +488,7 @@ export default function DisciplineHubsPage() {
 
           {/* Tab 2: Section Document & Blueprint Vault */}
           {activeSubTab === 'files' && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div
                 style={{
                   display: 'flex',
@@ -489,10 +499,10 @@ export default function DisciplineHubsPage() {
                 }}
               >
                 <div>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#000000' }}>
+                  <h3 style={{ fontSize: '1.18rem', fontWeight: 700, color: 'var(--text-main)' }}>
                     {activeDiscipline} Drawing & Specification Vault
                   </h3>
-                  <p style={{ fontSize: '0.82rem', color: '#52525b' }}>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                     Approved AutoCAD (.dwg), BIM models, and tender BOQ schedules
                   </p>
                 </div>
@@ -502,42 +512,43 @@ export default function DisciplineHubsPage() {
                   className="btn btn-primary btn-sm"
                   style={{ gap: '6px' }}
                 >
-                  <UploadCloud size={16} />
+                  <UploadCloud size={15} />
                   <span>Upload New Drawing</span>
                 </button>
               </div>
 
               {files.length === 0 ? (
-                <div className="card" style={{ padding: '60px 24px', textAlign: 'center', color: '#71717a' }}>
+                <div className="card" style={{ padding: '48px 24px', textAlign: 'center', color: 'var(--text-muted)', border: '1px solid var(--border-light)', backgroundColor: '#ffffff' }}>
                   No technical drawings uploaded for the {activeDiscipline} section yet.
                 </div>
               ) : (
                 <div
                   style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
-                    gap: '18px',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+                    gap: '16px',
                   }}
                 >
                   {files.map((file) => (
-                    <div key={file.id} className="card card-interactive" style={{ padding: '24px', border: '1px solid #000000' }}>
+                    <div key={file.id} className="card card-interactive" style={{ padding: '20px', border: '1px solid var(--border-light)', backgroundColor: '#ffffff' }}>
                       <div
                         style={{
                           display: 'flex',
                           justifyContent: 'space-between',
                           alignItems: 'flex-start',
-                          marginBottom: '10px',
+                          marginBottom: '8px',
                         }}
                       >
                         <span
                           style={{
-                            fontSize: '0.74rem',
-                            fontWeight: 800,
-                            padding: '3px 8px',
+                            fontSize: '0.7rem',
+                            fontWeight: 600,
+                            padding: '2px 8px',
                             borderRadius: '4px',
                             textTransform: 'uppercase',
-                            backgroundColor: '#000000',
-                            color: '#ffffff',
+                            backgroundColor: '#f1f5f9',
+                            color: '#475569',
+                            border: '1px solid var(--border-light)',
                           }}
                         >
                           .{file.fileType}
@@ -545,11 +556,11 @@ export default function DisciplineHubsPage() {
 
                         <span
                           style={{
-                            fontSize: '0.72rem',
-                            fontWeight: 700,
-                            color: '#000000',
-                            backgroundColor: '#f4f4f5',
-                            border: '1px solid #d4d4d8',
+                            fontSize: '0.7rem',
+                            fontWeight: 500,
+                            color: 'var(--text-muted)',
+                            backgroundColor: '#f8fafc',
+                            border: '1px solid var(--border-light)',
                             padding: '2px 8px',
                             borderRadius: '4px',
                           }}
@@ -558,27 +569,27 @@ export default function DisciplineHubsPage() {
                         </span>
                       </div>
 
-                      <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#000000', marginBottom: '4px' }}>
+                      <h4 style={{ fontSize: '0.94rem', fontWeight: 600, color: 'var(--text-main)', marginBottom: '3px' }}>
                         {file.title}
                       </h4>
-                      <div style={{ fontSize: '0.8rem', color: '#71717a', marginBottom: '8px' }}>
+                      <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
                         File: <strong>{file.fileName}</strong> • {file.fileSize}
                       </div>
 
                       <div
                         style={{
-                          backgroundColor: '#f4f4f5',
-                          border: '1px solid #e4e4e7',
+                          backgroundColor: '#f8fafc',
+                          border: '1px solid var(--border-light)',
                           borderRadius: '6px',
-                          padding: '10px 12px',
-                          fontSize: '0.78rem',
-                          color: '#27272a',
-                          marginBottom: '14px',
+                          padding: '8px 10px',
+                          fontSize: '0.76rem',
+                          color: 'var(--text-secondary)',
+                          marginBottom: '12px',
                           lineHeight: 1.4,
                         }}
                       >
                         <div>Project: <strong>{file.projectTitle}</strong></div>
-                        <div style={{ marginTop: '4px' }}>{file.notes}</div>
+                        <div style={{ marginTop: '3px' }}>{file.notes}</div>
                       </div>
 
                       <div
@@ -586,11 +597,11 @@ export default function DisciplineHubsPage() {
                           display: 'flex',
                           justifyContent: 'space-between',
                           alignItems: 'center',
-                          borderTop: '1px solid #e4e4e7',
-                          paddingTop: '12px',
+                          borderTop: '1px solid var(--border-light)',
+                          paddingTop: '10px',
                         }}
                       >
-                        <div style={{ fontSize: '0.72rem', color: '#71717a' }}>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
                           <div>By: {file.uploadedBy}</div>
                           <div>Date: {file.uploadDate}</div>
                         </div>
@@ -598,9 +609,9 @@ export default function DisciplineHubsPage() {
                         <button
                           onClick={() => triggerFileDownload(file)}
                           className="btn btn-secondary btn-sm"
-                          style={{ gap: '6px', fontSize: '0.78rem' }}
+                          style={{ gap: '6px', fontSize: '0.74rem', padding: '3px 8px' }}
                         >
-                          <Download size={14} />
+                          <Download size={13} />
                           <span>Download</span>
                         </button>
                       </div>

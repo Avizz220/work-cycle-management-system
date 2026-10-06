@@ -5,7 +5,7 @@ import { useCommunication } from '@/context/CommunicationContext';
 import { useProjects } from '@/context/ProjectContext';
 import { useAuth } from '@/context/AuthContext';
 import { DisciplineType, FileType } from '@/types';
-import { UploadCloud, X, FileCheck, CheckCircle2 } from 'lucide-react';
+import { UploadCloud, X, CheckCircle2 } from 'lucide-react';
 
 interface FileUploadModalProps {
   isOpen: boolean;
@@ -67,58 +67,45 @@ export default function FileUploadModal({
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-dialog" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '620px' }}>
+      <div className="modal-dialog" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px' }}>
         <div
           style={{
-            padding: '20px 24px',
-            borderBottom: '1px solid #000000',
+            padding: '18px 24px',
+            borderBottom: '1px solid var(--border-light)',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div
-              style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '8px',
-                backgroundColor: '#000000',
-                color: '#ffffff',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <UploadCloud size={20} />
-            </div>
+            <UploadCloud size={22} style={{ color: '#0f172a', flexShrink: 0 }} />
             <div>
-              <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#000000' }}>
+              <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-main)', margin: 0 }}>
                 Upload Drawing / Document to Section Vault
               </h2>
-              <p style={{ fontSize: '0.8rem', color: '#52525b' }}>
+              <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '2px' }}>
                 Share technical CAD files, BIM models, and engineering specifications.
               </p>
             </div>
           </div>
 
-          <button onClick={onClose} style={{ padding: '6px', color: '#000000' }}>
-            <X size={20} />
+          <button onClick={onClose} style={{ padding: '6px', color: 'var(--text-muted)' }}>
+            <X size={18} />
           </button>
         </div>
 
         {isSuccess ? (
           <div style={{ padding: '48px 24px', textAlign: 'center' }}>
-            <CheckCircle2 size={48} style={{ color: '#000000', margin: '0 auto 16px' }} />
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#000000' }}>
+            <CheckCircle2 size={44} style={{ color: '#16a34a', margin: '0 auto 12px' }} />
+            <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-main)' }}>
               Drawing Uploaded Successfully!
             </h3>
-            <p style={{ fontSize: '0.85rem', color: '#52525b', marginTop: '6px' }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '4px' }}>
               Your section team and the Project Manager have been notified.
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{ padding: '24px' }}>
+          <form onSubmit={handleSubmit} style={{ padding: '20px 24px' }}>
             <div className="input-group">
               <label className="input-label">Drawing / Document Title *</label>
               <input
@@ -131,7 +118,7 @@ export default function FileUploadModal({
               />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
               <div className="input-group">
                 <label className="input-label">File Name (with extension) *</label>
                 <input
@@ -160,54 +147,54 @@ export default function FileUploadModal({
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
               <div className="input-group">
-                <label className="input-label">Discipline / Section *</label>
+                <label className="input-label">Section / Discipline *</label>
                 <select
                   className="select-input"
                   value={discipline}
                   onChange={(e) => setDiscipline(e.target.value as DisciplineType)}
                 >
-                  <option value="Electrical">Electrical Engineering</option>
-                  <option value="Civil">Civil & Structural</option>
-                  <option value="Plumbing">Plumbing & MEP</option>
-                  <option value="Architectural">Architectural Design</option>
+                  <option value="Electrical">Electrical</option>
+                  <option value="Civil">Civil</option>
+                  <option value="Plumbing">Plumbing</option>
+                  <option value="Architectural">Architectural</option>
                 </select>
               </div>
 
               <div className="input-group">
-                <label className="input-label">Revision Version</label>
-                <input
-                  type="text"
-                  className="input-text"
-                  placeholder="e.g. Rev 2.1 - Approved for Construction"
-                  value={version}
-                  onChange={(e) => setVersion(e.target.value)}
-                />
+                <label className="input-label">Associated Project</label>
+                <select
+                  className="select-input"
+                  value={projectId}
+                  onChange={(e) => setProjectId(e.target.value)}
+                >
+                  {projects.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.code} - {p.title}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
             <div className="input-group">
-              <label className="input-label">Associated Project</label>
-              <select
-                className="select-input"
-                value={projectId}
-                onChange={(e) => setProjectId(e.target.value)}
-              >
-                {projects.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.code} - {p.title}
-                  </option>
-                ))}
-              </select>
+              <label className="input-label">Revision & Status Tag</label>
+              <input
+                type="text"
+                className="input-text"
+                value={version}
+                onChange={(e) => setVersion(e.target.value)}
+                placeholder="e.g. Rev 2.0 - Certified For Construction"
+              />
             </div>
 
             <div className="input-group">
-              <label className="input-label">Engineering Notes & Statutory Remarks</label>
+              <label className="input-label">Technical Notes & Scope Changes</label>
               <textarea
                 className="textarea-input"
-                rows={3}
-                placeholder="Include details about compliance, voltage ratings, concrete mix specs, or revisions..."
+                rows={2}
+                placeholder="Describe key alterations, calculation references, or review requirements..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
               />
@@ -217,18 +204,18 @@ export default function FileUploadModal({
               style={{
                 display: 'flex',
                 justifyContent: 'flex-end',
-                gap: '12px',
-                marginTop: '12px',
+                gap: '10px',
+                marginTop: '16px',
                 paddingTop: '16px',
-                borderTop: '1px solid #e4e4e7',
+                borderTop: '1px solid var(--border-light)',
               }}
             >
-              <button type="button" className="btn btn-secondary" onClick={onClose}>
+              <button type="button" onClick={onClose} className="btn btn-secondary">
                 Cancel
               </button>
               <button type="submit" className="btn btn-primary" style={{ gap: '6px' }}>
-                <FileCheck size={16} />
-                <span>Upload to Vault</span>
+                <UploadCloud size={15} />
+                <span>Upload to Drawing Vault</span>
               </button>
             </div>
           </form>

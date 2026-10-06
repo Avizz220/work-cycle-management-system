@@ -1,51 +1,41 @@
 :root {
   --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   
-  /* Black & White Architectural Design Tokens */
-  --bg-app: #fbfbfb;
+  /* Enterprise Light Ash & Clean Slate Color Palette (Ref: Modern Management System) */
+  --bg-app: #f8fafc;
   --bg-surface: #ffffff;
-  --bg-subtle: #f4f4f5;
-  --bg-hover: #f1f1f3;
-  --bg-dark: #000000;
-  --bg-dark-hover: #262626;
+  --bg-subtle: #f1f5f9;
+  --bg-hover: #f8fafc;
 
-  /* Borders */
-  --border-light: #e4e4e7;
-  --border-medium: #d4d4d8;
-  --border-dark: #000000;
-  --border-focus: #000000;
+  /* Borders - Soft Subtle Ash */
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-dark: #0f172a;
 
-  /* Typography Colors - Strictly Black & Greys */
-  --text-main: #000000;
-  --text-dark: #09090b;
-  --text-secondary: #27272a;
-  --text-muted: #71717a;
-  --text-light: #a1a1aa;
+  /* Typography - Crisp Enterprise Slate Hierarchy */
+  --text-main: #0f172a;
+  --text-dark: #020617;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
   --text-white: #ffffff;
 
-  /* Brand Black Accents */
-  --brand-black: #000000;
-  --brand-charcoal: #18181b;
-  --brand-grey: #52525b;
+  /* Buttons - Clean Normal Slate Black */
+  --btn-dark: #0f172a;
+  --btn-dark-hover: #1e293b;
 
-  /* Monochrome Badges & Discipline Indicators */
-  --mono-black: #000000;
-  --mono-black-text: #ffffff;
-  --mono-subtle-bg: #f4f4f5;
-  --mono-subtle-text: #000000;
-  --mono-subtle-border: #d4d4d8;
-  
+  /* Radius */
   --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-pill: 9999px;
 
-  /* Subtle Crisp Architectural Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  /* Subtle Crisp Enterprise Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -4px rgba(0, 0, 0, 0.02);
 }
 
 * {
@@ -75,16 +65,16 @@ button {
   border: none;
   outline: none;
   background: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.15s ease;
 }
 
 input,
 select,
 textarea {
   font-family: inherit;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   outline: none;
-  color: #000000;
+  color: var(--text-main);
 }
 
 /* Scrollbar Minimalist */
@@ -93,14 +83,14 @@ textarea {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f4f4f5;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
+  background: #cbd5e1;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
+  background: #94a3b8;
 }
 
 /* App Shell Layout */
@@ -120,247 +110,212 @@ textarea {
 
 .main-content {
   flex: 1;
-  padding: 28px 36px;
+  padding: 24px 32px;
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* Cards - Crisp, Elegant Architectural Style */
+/* Cards - Crisp, Light Surface with Subtle Ash Border */
 .card {
   background: var(--bg-surface);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 22px;
   box-shadow: var(--shadow-sm);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s ease;
 }
 
 .card:hover {
-  border-color: #a1a1aa;
+  border-color: #cbd5e1;
 }
 
 .card-interactive:hover {
-  border-color: #000000;
+  border-color: #94a3b8;
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
-/* Strict Black and White Buttons */
+/* Buttons - Professional Enterprise Standard */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   font-weight: 600;
-  font-size: 0.88rem;
-  padding: 10px 18px;
+  font-size: 0.85rem;
+  padding: 8px 16px;
   border-radius: var(--radius-md);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.15s ease;
   white-space: nowrap;
 }
 
-/* Primary Button: Solid Black Background, White Text */
+/* Primary Button: Clean Normal Dark Slate, White Text */
 .btn-primary,
 .btn-gold,
 .btn-dark {
-  background: #000000 !important;
+  background: var(--btn-dark) !important;
   color: #ffffff !important;
-  border: 1px solid #000000 !important;
+  border: 1px solid var(--btn-dark) !important;
 }
 
 .btn-primary:hover,
 .btn-gold:hover,
 .btn-dark:hover {
-  background: #27272a !important;
-  border-color: #27272a !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: var(--btn-dark-hover) !important;
+  border-color: var(--btn-dark-hover) !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
 }
 
-.btn-primary:active,
-.btn-gold:active,
-.btn-dark:active {
-  transform: translateY(0);
-}
-
-/* Secondary Button: White Background, Black Text & Border */
+/* Secondary Button: Clean White Surface, Soft Ash Border, Dark Text */
 .btn-secondary {
   background: #ffffff !important;
-  color: #000000 !important;
-  border: 1px solid #000000 !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-light) !important;
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover {
-  background: #000000 !important;
-  color: #ffffff !important;
-  transform: translateY(-1px);
-}
-
-.btn-outline-subtle {
-  background: #ffffff !important;
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
   color: #000000 !important;
-  border: 1px solid #e4e4e7 !important;
 }
 
-.btn-outline-subtle:hover {
-  background: #f4f4f5 !important;
-  border-color: #000000 !important;
-}
-
-/* Ghost Button */
 .btn-ghost {
-  color: #000000 !important;
+  color: var(--text-secondary) !important;
   background: transparent !important;
   border: 1px solid transparent !important;
 }
 
 .btn-ghost:hover {
-  background: #f4f4f5 !important;
-  color: #000000 !important;
+  background: var(--bg-subtle) !important;
+  color: var(--text-main) !important;
 }
 
 .btn-sm {
-  padding: 6px 12px;
+  padding: 5px 12px;
   font-size: 0.78rem;
   border-radius: var(--radius-sm);
 }
 
 .btn-lg {
-  padding: 12px 24px;
-  font-size: 0.95rem;
+  padding: 10px 20px;
+  font-size: 0.92rem;
 }
 
-.btn-danger {
-  background: #ffffff !important;
-  color: #000000 !important;
-  border: 1px solid #000000 !important;
-}
-
-.btn-danger:hover {
-  background: #000000 !important;
-  color: #ffffff !important;
-}
-
-/* Inputs - Crisp Monochrome */
+/* Inputs - Clean Rounded Styling */
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   margin-bottom: 16px;
 }
 
 .input-label {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #000000;
-  letter-spacing: 0.01em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
 }
 
 .input-text,
 .select-input,
 .textarea-input {
   width: 100%;
-  padding: 10px 14px;
-  border: 1px solid var(--border-medium);
+  padding: 8px 12px;
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   background: #ffffff;
-  color: #000000;
-  transition: all 0.2s ease;
+  color: var(--text-main);
+  transition: all 0.15s ease;
+  font-size: 0.85rem;
 }
 
 .input-text:focus,
 .select-input:focus,
 .textarea-input:focus {
-  border-color: #000000;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  border-color: var(--text-main);
+  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.08);
 }
 
-/* Badges - Strictly Black & White / Neutral Grey */
+/* Badges & Pills - Light Ash with Circular / Rounded Border (No Ugly Black Blobs!) */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 3px 9px;
-  border-radius: 9999px;
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-.badge-dark {
-  background: #000000;
-  color: #ffffff;
-  border: 1px solid #000000;
-}
-
-.badge-outline {
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #000000;
-}
-
-.badge-subtle {
-  background: #f4f4f5;
-  color: #000000;
-  border: 1px solid #d4d4d8;
-}
-
-/* Section / Discipline Badges - All Minimal Monochrome */
+/* Subtle Ash Pill (Default for Disciplines & Metadata) */
+.badge-subtle,
 .badge-elec,
 .badge-civil,
 .badge-plumb,
 .badge-arch,
 .badge-management,
 .badge-all {
-  background: #f4f4f5;
-  color: #000000;
-  border: 1px solid #d4d4d8;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid var(--border-light);
 }
 
-.badge-active-disc {
-  background: #000000;
+/* Outline Pill */
+.badge-outline {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid var(--border-light);
+}
+
+/* Dark Accent Pill - Clean and refined, NOT a huge blob */
+.badge-dark {
+  background: #0f172a;
   color: #ffffff;
-  border: 1px solid #000000;
+  border: 1px solid #0f172a;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  padding: 1px 6px;
 }
 
-/* Status Badges - Monochrome */
-.badge-pending {
-  background: #f4f4f5;
-  color: #52525b;
-  border: 1px solid #e4e4e7;
+/* Status Badges */
+.badge-completed {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
 }
 
 .badge-progress {
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #000000;
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid var(--border-light);
 }
 
 .badge-review {
-  background: #f4f4f5;
-  color: #000000;
-  border: 1px solid #000000;
+  background: #fefce8;
+  color: #854d0e;
+  border: 1px solid #fef08a;
 }
 
-.badge-completed {
-  background: #000000;
-  color: #ffffff;
-  border: 1px solid #000000;
+.badge-pending {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid var(--border-light);
 }
 
 .badge-danger {
-  background: #000000;
-  color: #ffffff;
-  border: 1px solid #000000;
-  font-weight: 800;
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
 }
 
-/* Minimalist Solid Black Progress Track */
+/* Progress Track */
 .progress-track {
   width: 100%;
   height: 6px;
-  background: #e4e4e7;
+  background: #e2e8f0;
   border-radius: 9999px;
   overflow: hidden;
 }
@@ -368,7 +323,7 @@ textarea {
 .progress-fill {
   height: 100%;
   border-radius: 9999px;
-  background: #000000;
+  background: #0f172a;
   transition: width 0.4s ease;
 }
 
@@ -376,8 +331,8 @@ textarea {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(4px);
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(3px);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -388,19 +343,19 @@ textarea {
 .modal-dialog {
   background: #ffffff;
   border-radius: var(--radius-xl);
-  max-width: 680px;
+  max-width: 640px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  border: 1px solid #000000;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-light);
   animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes modalPop {
   from {
     opacity: 0;
-    transform: scale(0.97) translateY(8px);
+    transform: scale(0.97) translateY(6px);
   }
   to {
     opacity: 1;

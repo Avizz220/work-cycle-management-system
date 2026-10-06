@@ -52,25 +52,25 @@ export default function DeadlinesTable({ initialDiscipline = 'All', showFilters 
       case 'Electrical':
         return (
           <span className="badge badge-subtle" style={{ whiteSpace: 'nowrap' }}>
-            <Zap size={13} style={{ color: '#000000', flexShrink: 0 }} /> Electrical
+            <Zap size={12} style={{ color: '#64748b', flexShrink: 0 }} /> Electrical
           </span>
         );
       case 'Civil':
         return (
           <span className="badge badge-subtle" style={{ whiteSpace: 'nowrap' }}>
-            <Building2 size={13} style={{ color: '#000000', flexShrink: 0 }} /> Civil & Structural
+            <Building2 size={12} style={{ color: '#64748b', flexShrink: 0 }} /> Civil & Structural
           </span>
         );
       case 'Plumbing':
         return (
           <span className="badge badge-subtle" style={{ whiteSpace: 'nowrap' }}>
-            <Droplets size={13} style={{ color: '#000000', flexShrink: 0 }} /> Plumbing & MEP
+            <Droplets size={12} style={{ color: '#64748b', flexShrink: 0 }} /> Plumbing & MEP
           </span>
         );
       case 'Architectural':
         return (
           <span className="badge badge-subtle" style={{ whiteSpace: 'nowrap' }}>
-            <Compass size={13} style={{ color: '#000000', flexShrink: 0 }} /> Architectural
+            <Compass size={12} style={{ color: '#64748b', flexShrink: 0 }} /> Architectural
           </span>
         );
       default:
@@ -97,54 +97,63 @@ export default function DeadlinesTable({ initialDiscipline = 'All', showFilters 
   };
 
   return (
-    <div className="card" style={{ padding: '0', overflow: 'hidden', border: '1px solid #e4e4e7' }}>
-      {/* Table Header & Controls */}
+    <div className="card" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--border-light)' }}>
+      {/* Table Header & Filters - Styled matching reference screenshot */}
       {showFilters && (
         <div
           style={{
-            padding: '16px 24px',
-            borderBottom: '1px solid #e4e4e7',
+            padding: '16px 20px',
+            borderBottom: '1px solid var(--border-light)',
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '14px',
+            gap: '12px',
             justifyContent: 'space-between',
             alignItems: 'center',
             backgroundColor: '#ffffff',
           }}
         >
-          {/* Discipline tabs */}
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          {/* Section filter pills */}
+          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
             {(['All', 'Electrical', 'Civil', 'Plumbing', 'Architectural'] as const).map((disc) => (
               <button
                 key={disc}
                 onClick={() => setSelectedDiscipline(disc)}
                 style={{
-                  padding: '7px 16px',
+                  padding: '6px 14px',
                   borderRadius: 'var(--radius-md)',
-                  fontSize: '0.82rem',
-                  fontWeight: 700,
-                  backgroundColor: selectedDiscipline === disc ? '#000000' : '#ffffff',
-                  color: selectedDiscipline === disc ? '#ffffff' : '#000000',
-                  border: '1px solid #000000',
+                  fontSize: '0.8rem',
+                  fontWeight: selectedDiscipline === disc ? 600 : 500,
+                  backgroundColor: selectedDiscipline === disc ? '#0f172a' : '#ffffff',
+                  color: selectedDiscipline === disc ? '#ffffff' : '#475569',
+                  border: `1px solid ${selectedDiscipline === disc ? '#0f172a' : 'var(--border-light)'}`,
                   whiteSpace: 'nowrap',
                   transition: 'all 0.15s ease',
                 }}
               >
-                {disc === 'All' ? 'All Sections' : `${disc}`}
+                {disc === 'All' ? 'All Sections' : disc}
               </button>
             ))}
           </div>
 
-          {/* Status urgency filter */}
+          {/* Status urgency filter dropdown */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Filter size={15} style={{ color: '#000000', flexShrink: 0 }} />
+            <span style={{ fontSize: '0.76rem', color: 'var(--text-muted)', fontWeight: 600 }}>Status:</span>
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as any)}
               className="select-input"
-              style={{ padding: '7px 14px', fontSize: '0.82rem', width: 'auto', border: '1px solid #000000', whiteSpace: 'nowrap' }}
+              style={{
+                padding: '6px 12px',
+                fontSize: '0.8rem',
+                width: 'auto',
+                border: '1px solid var(--border-light)',
+                borderRadius: 'var(--radius-md)',
+                backgroundColor: '#ffffff',
+                color: 'var(--text-main)',
+                whiteSpace: 'nowrap',
+              }}
             >
-              <option value="All">All Statuses ({allDeadlines.length})</option>
+              <option value="All">All Phases ({allDeadlines.length})</option>
               <option value="Active">Active Only</option>
               <option value="Urgent">Urgent / Overdue Only</option>
               <option value="Completed">Completed Phases</option>
@@ -157,21 +166,21 @@ export default function DeadlinesTable({ initialDiscipline = 'All', showFilters 
       <div style={{ overflowX: 'auto', width: '100%' }}>
         <table style={{ width: '100%', minWidth: '1100px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.84rem' }}>
           <thead>
-            <tr style={{ backgroundColor: '#fafafa', borderBottom: '1px solid #e4e4e7', color: '#000000', fontSize: '0.74rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              <th style={{ padding: '14px 20px', fontWeight: 800, width: '27%', whiteSpace: 'nowrap' }}>Phase & Deliverable</th>
-              <th style={{ padding: '14px 18px', fontWeight: 800, width: '22%', whiteSpace: 'nowrap' }}>Project</th>
-              <th style={{ padding: '14px 16px', fontWeight: 800, width: '15%', whiteSpace: 'nowrap' }}>Section</th>
-              <th style={{ padding: '14px 16px', fontWeight: 800, width: '13%', whiteSpace: 'nowrap' }}>Lead Engineer</th>
-              <th style={{ padding: '14px 16px', fontWeight: 800, width: '11%', whiteSpace: 'nowrap' }}>Target Deadline</th>
-              <th style={{ padding: '14px 14px', fontWeight: 800, width: '8%', whiteSpace: 'nowrap' }}>Days Left</th>
-              <th style={{ padding: '14px 14px', fontWeight: 800, width: '9%', whiteSpace: 'nowrap' }}>Status</th>
-              <th style={{ padding: '14px 20px', fontWeight: 800, width: '8%', textAlign: 'right', whiteSpace: 'nowrap' }}>Actions</th>
+            <tr style={{ backgroundColor: '#f8fafc', borderBottom: '1px solid var(--border-light)', color: '#475569', fontSize: '0.74rem', fontWeight: 600, letterSpacing: '0.02em' }}>
+              <th style={{ padding: '12px 18px', width: '27%', whiteSpace: 'nowrap' }}>Phase & Deliverable</th>
+              <th style={{ padding: '12px 16px', width: '22%', whiteSpace: 'nowrap' }}>Project</th>
+              <th style={{ padding: '12px 16px', width: '15%', whiteSpace: 'nowrap' }}>Section</th>
+              <th style={{ padding: '12px 16px', width: '13%', whiteSpace: 'nowrap' }}>Lead Engineer</th>
+              <th style={{ padding: '12px 16px', width: '11%', whiteSpace: 'nowrap' }}>Target Deadline</th>
+              <th style={{ padding: '12px 14px', width: '8%', whiteSpace: 'nowrap' }}>Days Left</th>
+              <th style={{ padding: '12px 14px', width: '9%', whiteSpace: 'nowrap' }}>Status</th>
+              <th style={{ padding: '12px 18px', width: '8%', textAlign: 'right', whiteSpace: 'nowrap' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {filteredDeadlines.length === 0 ? (
               <tr>
-                <td colSpan={8} style={{ padding: '40px 20px', textAlign: 'center', color: '#71717a' }}>
+                <td colSpan={8} style={{ padding: '36px 20px', textAlign: 'center', color: 'var(--text-muted)' }}>
                   No project phases match the selected criteria.
                 </td>
               </tr>
@@ -180,18 +189,18 @@ export default function DeadlinesTable({ initialDiscipline = 'All', showFilters 
                 <tr
                   key={`${item.projectId}-${item.phaseId}`}
                   style={{
-                    borderBottom: '1px solid #f0f0f0',
+                    borderBottom: '1px solid #f1f5f9',
                     backgroundColor: '#ffffff',
                     transition: 'background-color 0.12s ease',
                   }}
                 >
-                  {/* Phase & Deliverable - Single line phase title + single line metadata */}
-                  <td style={{ padding: '14px 20px' }}>
+                  {/* Phase & Deliverable */}
+                  <td style={{ padding: '12px 18px' }}>
                     <div
                       style={{
-                        fontWeight: 700,
-                        color: '#000000',
-                        fontSize: '0.86rem',
+                        fontWeight: 600,
+                        color: 'var(--text-main)',
+                        fontSize: '0.85rem',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
@@ -201,27 +210,26 @@ export default function DeadlinesTable({ initialDiscipline = 'All', showFilters 
                     >
                       {item.phaseName}
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '3px', whiteSpace: 'nowrap' }}>
-                      <span style={{ fontSize: '0.74rem', color: '#71717a', whiteSpace: 'nowrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '3px', whiteSpace: 'nowrap' }}>
+                      <span style={{ fontSize: '0.74rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
                         Phase {item.phaseNumber}
                       </span>
                       {item.deliverables.length > 0 && (
                         <>
-                          <span style={{ fontSize: '0.7rem', color: '#a1a1aa' }}>•</span>
+                          <span style={{ fontSize: '0.7rem', color: '#cbd5e1' }}>•</span>
                           <button
                             onClick={() => setSelectedItemDeliverables({ name: item.phaseName, deliverables: item.deliverables })}
                             style={{
                               fontSize: '0.74rem',
-                              color: '#000000',
-                              textDecoration: 'underline',
-                              fontWeight: 600,
+                              color: '#2563eb',
+                              fontWeight: 500,
                               display: 'inline-flex',
                               alignItems: 'center',
-                              gap: '4px',
+                              gap: '3px',
                               whiteSpace: 'nowrap',
                             }}
                           >
-                            <FileCheck size={12} style={{ color: '#000000' }} />
+                            <FileCheck size={12} />
                             <span>{item.deliverables.length} Deliverables</span>
                           </button>
                         </>
@@ -229,13 +237,13 @@ export default function DeadlinesTable({ initialDiscipline = 'All', showFilters 
                     </div>
                   </td>
 
-                  {/* Project - Single line title + single line code */}
-                  <td style={{ padding: '14px 18px' }}>
+                  {/* Project */}
+                  <td style={{ padding: '12px 16px' }}>
                     <div
                       style={{
                         fontWeight: 600,
-                        color: '#000000',
-                        fontSize: '0.85rem',
+                        color: 'var(--text-main)',
+                        fontSize: '0.84rem',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
@@ -245,84 +253,95 @@ export default function DeadlinesTable({ initialDiscipline = 'All', showFilters 
                     >
                       {item.projectTitle}
                     </div>
-                    <div style={{ fontSize: '0.74rem', color: '#71717a', marginTop: '2px', whiteSpace: 'nowrap' }}>
+                    <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '2px', whiteSpace: 'nowrap' }}>
                       {item.projectCode}
                     </div>
                   </td>
 
-                  {/* Section - Single line pill */}
-                  <td style={{ padding: '14px 16px', whiteSpace: 'nowrap' }}>
+                  {/* Section */}
+                  <td style={{ padding: '12px 16px', whiteSpace: 'nowrap' }}>
                     {getDisciplineBadge(item.assignedSection)}
                   </td>
 
-                  {/* Lead - Single line */}
-                  <td style={{ padding: '14px 16px', color: '#27272a', fontWeight: 500, fontSize: '0.82rem', whiteSpace: 'nowrap' }}>
+                  {/* Lead */}
+                  <td style={{ padding: '12px 16px', color: '#475569', fontSize: '0.82rem', whiteSpace: 'nowrap' }}>
                     {item.leadPerson}
                   </td>
 
-                  {/* Target Deadline Date - Single line with date + icon */}
-                  <td style={{ padding: '14px 16px', whiteSpace: 'nowrap' }}>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 600, fontSize: '0.82rem', color: '#000000', whiteSpace: 'nowrap' }}>
-                      <Calendar size={13} style={{ color: '#000000', flexShrink: 0 }} />
+                  {/* Target Deadline Date */}
+                  <td style={{ padding: '12px 16px', whiteSpace: 'nowrap' }}>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem', color: '#334155', whiteSpace: 'nowrap' }}>
+                      <Calendar size={13} style={{ color: '#64748b', flexShrink: 0 }} />
                       <span style={{ whiteSpace: 'nowrap' }}>{item.deadline}</span>
                     </div>
                   </td>
 
-                  {/* Days Left badge - Single line */}
-                  <td style={{ padding: '14px 14px', whiteSpace: 'nowrap' }}>
+                  {/* Days Left - Soft Light Ash Pill (NO Pitch Black Blob!) */}
+                  <td style={{ padding: '12px 14px', whiteSpace: 'nowrap' }}>
                     {item.status === 'Completed' ? (
-                      <span style={{ fontSize: '0.76rem', color: '#000000', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap' }}>
-                        <CheckCircle2 size={13} style={{ color: '#000000' }} /> Done
+                      <span style={{ fontSize: '0.75rem', color: '#166534', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap' }}>
+                        <CheckCircle2 size={13} /> Done
                       </span>
                     ) : item.isOverdue ? (
-                      <span className="badge badge-dark" style={{ fontWeight: 700, whiteSpace: 'nowrap', fontSize: '0.72rem', padding: '2px 7px' }}>
+                      <span
+                        style={{
+                          fontSize: '0.72rem',
+                          fontWeight: 600,
+                          backgroundColor: '#fef2f2',
+                          color: '#991b1b',
+                          border: '1px solid #fecaca',
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
                         Overdue {Math.abs(item.daysRemaining)}d
                       </span>
                     ) : item.isUrgent ? (
                       <span
                         style={{
-                          fontSize: '0.74rem',
-                          fontWeight: 700,
-                          backgroundColor: '#000000',
-                          color: '#ffffff',
-                          padding: '3px 8px',
+                          fontSize: '0.72rem',
+                          fontWeight: 600,
+                          backgroundColor: '#fffbeb',
+                          color: '#92400e',
+                          border: '1px solid #fde68a',
+                          padding: '2px 8px',
                           borderRadius: '4px',
                           whiteSpace: 'nowrap',
-                          display: 'inline-block',
                         }}
                       >
                         {item.daysRemaining}d Left
                       </span>
                     ) : (
-                      <span style={{ fontSize: '0.78rem', color: '#27272a', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                      <span style={{ fontSize: '0.76rem', color: '#475569', fontWeight: 500, whiteSpace: 'nowrap' }}>
                         {item.daysRemaining}d
                       </span>
                     )}
                   </td>
 
-                  {/* Status - Single line pill */}
-                  <td style={{ padding: '14px 14px', whiteSpace: 'nowrap' }}>
+                  {/* Status */}
+                  <td style={{ padding: '12px 14px', whiteSpace: 'nowrap' }}>
                     {getStatusBadge(item.status)}
                   </td>
 
-                  {/* Actions - Single line button */}
-                  <td style={{ padding: '14px 20px', textAlign: 'right', whiteSpace: 'nowrap' }}>
+                  {/* Actions */}
+                  <td style={{ padding: '12px 18px', textAlign: 'right', whiteSpace: 'nowrap' }}>
                     <div style={{ display: 'inline-flex', gap: '6px', whiteSpace: 'nowrap' }}>
                       {item.status !== 'Completed' ? (
                         <button
                           onClick={() => handleStatusChange(item.projectId, item.phaseId, 'Completed')}
                           className="btn btn-secondary btn-sm"
-                          style={{ fontSize: '0.74rem', padding: '4px 10px', whiteSpace: 'nowrap' }}
+                          style={{ fontSize: '0.74rem', padding: '3px 8px', whiteSpace: 'nowrap' }}
                           title="Mark Phase as Completed"
                         >
-                          <CheckCircle2 size={12} style={{ color: '#000000' }} />
+                          <CheckCircle2 size={12} />
                           <span>Complete</span>
                         </button>
                       ) : (
                         <button
                           onClick={() => handleStatusChange(item.projectId, item.phaseId, 'In Progress')}
                           className="btn btn-ghost btn-sm"
-                          style={{ fontSize: '0.72rem', padding: '4px 8px', color: '#71717a', whiteSpace: 'nowrap' }}
+                          style={{ fontSize: '0.72rem', padding: '3px 8px', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}
                           title="Reopen phase"
                         >
                           Reopen
@@ -341,15 +360,15 @@ export default function DeadlinesTable({ initialDiscipline = 'All', showFilters 
       {selectedItemDeliverables && (
         <div className="modal-overlay" onClick={() => setSelectedItemDeliverables(null)}>
           <div className="modal-dialog" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '480px' }}>
-            <div style={{ padding: '20px 24px', borderBottom: '1px solid #e4e4e7' }}>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#000000' }}>
+            <div style={{ padding: '18px 22px', borderBottom: '1px solid var(--border-light)' }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)' }}>
                 Phase Deliverables Checklist
               </h3>
-              <p style={{ fontSize: '0.8rem', color: '#52525b', marginTop: '2px' }}>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
                 {selectedItemDeliverables.name}
               </p>
             </div>
-            <div style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <div style={{ padding: '18px 22px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {selectedItemDeliverables.deliverables.map((item, idx) => (
                 <div
                   key={idx}
@@ -358,20 +377,19 @@ export default function DeadlinesTable({ initialDiscipline = 'All', showFilters 
                     alignItems: 'center',
                     gap: '10px',
                     padding: '8px 12px',
-                    backgroundColor: '#fafafa',
-                    border: '1px solid #e4e4e7',
+                    backgroundColor: 'var(--bg-subtle)',
+                    border: '1px solid var(--border-light)',
                     borderRadius: '6px',
                     fontSize: '0.84rem',
-                    color: '#000000',
-                    fontWeight: 600,
+                    color: 'var(--text-secondary)',
                   }}
                 >
-                  <CheckCircle2 size={15} style={{ color: '#000000', flexShrink: 0 }} />
+                  <CheckCircle2 size={15} style={{ color: '#16a34a', flexShrink: 0 }} />
                   <span>{item}</span>
                 </div>
               ))}
             </div>
-            <div style={{ padding: '14px 24px', borderTop: '1px solid #e4e4e7', textAlign: 'right', backgroundColor: '#fafafa' }}>
+            <div style={{ padding: '12px 22px', borderTop: '1px solid var(--border-light)', textAlign: 'right', backgroundColor: '#f8fafc' }}>
               <button className="btn btn-primary btn-sm" onClick={() => setSelectedItemDeliverables(null)}>
                 Close
               </button>

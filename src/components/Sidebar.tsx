@@ -19,13 +19,16 @@ import {
   Building2,
   Droplets,
   Compass,
+  PlayCircle,
 } from 'lucide-react';
+import DG5SplashIntro from './DG5SplashIntro';
 
 export default function Sidebar() {
   const pathname = usePathname();
   const { currentUser, isPM, logout } = useAuth();
   const { urgentDeadlines } = useProjects();
   const [isRoleModalOpen, setIsRoleModalOpen] = useState(false);
+  const [showSplash, setShowSplash] = useState(false);
 
   const navItems = [
     {
@@ -42,8 +45,7 @@ export default function Sidebar() {
       label: 'Add Project & Phases',
       href: '/projects/new',
       icon: <FolderPlus size={18} />,
-      badge: isPM ? 'PM Action' : 'PM Only',
-      badgeClass: isPM ? 'badge-dark' : 'badge-subtle',
+      badge: isPM ? 'PM' : undefined,
     },
     {
       label: 'Deadlines & Schedules',
@@ -67,9 +69,9 @@ export default function Sidebar() {
     <>
       <aside
         style={{
-          width: '270px',
+          width: '260px',
           backgroundColor: '#ffffff',
-          borderRight: '1px solid #e4e4e7',
+          borderRight: '1px solid var(--border-light)',
           display: 'flex',
           flexDirection: 'column',
           flexShrink: 0,
@@ -82,11 +84,11 @@ export default function Sidebar() {
         {/* Brand Header */}
         <div
           style={{
-            padding: '24px 20px',
-            borderBottom: '1px solid #e4e4e7',
+            padding: '20px 20px 16px',
+            borderBottom: '1px solid var(--border-light)',
             display: 'flex',
             flexDirection: 'column',
-            gap: '10px',
+            gap: '8px',
           }}
         >
           <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
@@ -95,7 +97,7 @@ export default function Sidebar() {
               src="/resources/Main-LOGO.png"
               alt="DG 5 The Design Group Five"
               style={{
-                height: '46px',
+                height: '42px',
                 width: 'auto',
                 objectFit: 'contain',
               }}
@@ -103,22 +105,47 @@ export default function Sidebar() {
           </Link>
           <div
             style={{
-              fontSize: '0.72rem',
-              fontWeight: 800,
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: '#000000',
-              backgroundColor: '#f4f4f5',
-              border: '1px solid #d4d4d8',
-              padding: '3px 8px',
-              borderRadius: '4px',
-              display: 'inline-block',
-              alignSelf: 'flex-start',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
           >
-            Work Management System
+            <div
+              style={{
+                fontSize: '0.72rem',
+                fontWeight: 600,
+                color: 'var(--text-muted)',
+                letterSpacing: '0.02em',
+              }}
+            >
+              Work Management System
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowSplash(true)}
+              title="Play Creative DG5 Brand Intro Animation"
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#0284c7',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '3px',
+                fontSize: '0.68rem',
+                fontWeight: 600,
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: '#f0f9ff',
+              }}
+            >
+              <PlayCircle size={11} />
+              <span>Intro</span>
+            </button>
           </div>
         </div>
+
+        {showSplash && <DG5SplashIntro forceShow onComplete={() => setShowSplash(false)} />}
 
         {/* Navigation links */}
         <div
@@ -128,17 +155,17 @@ export default function Sidebar() {
             padding: '16px 12px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '4px',
+            gap: '3px',
           }}
         >
           <div
             style={{
-              padding: '6px 12px',
+              padding: '6px 12px 4px',
               fontSize: '0.72rem',
-              fontWeight: 800,
+              fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.06em',
-              color: '#71717a',
+              color: 'var(--text-muted)',
             }}
           >
             Menu
@@ -154,41 +181,59 @@ export default function Sidebar() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '10px 14px',
+                  padding: '9px 12px',
                   borderRadius: 'var(--radius-md)',
-                  color: isActive ? '#000000' : '#52525b',
-                  backgroundColor: isActive ? '#f4f4f5' : 'transparent',
-                  fontWeight: isActive ? 800 : 500,
-                  fontSize: '0.88rem',
+                  color: isActive ? '#0f172a' : '#475569',
+                  backgroundColor: isActive ? '#eff6ff' : 'transparent',
+                  fontWeight: isActive ? 600 : 500,
+                  fontSize: '0.86rem',
                   transition: 'all 0.15s ease',
-                  borderLeft: isActive ? '3px solid #000000' : '3px solid transparent',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ color: '#000000' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ color: isActive ? '#2563eb' : '#64748b' }}>
                     {item.icon}
                   </span>
                   <span>{item.label}</span>
                 </div>
 
-                {item.urgentCount !== undefined && item.urgentCount > 0 && (
-                  <span
-                    className="badge badge-dark"
-                    style={{ fontSize: '0.68rem', padding: '2px 7px' }}
-                    title={`${item.urgentCount} Urgent Deadlines`}
-                  >
-                    {item.urgentCount}
-                  </span>
-                )}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  {item.badge && (
+                    <span
+                      style={{
+                        fontSize: '0.68rem',
+                        fontWeight: 600,
+                        backgroundColor: '#f1f5f9',
+                        color: '#475569',
+                        border: '1px solid var(--border-light)',
+                        padding: '1px 6px',
+                        borderRadius: '4px',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {item.badge}
+                    </span>
+                  )}
 
-                {item.badge && (
-                  <span
-                    className={`badge ${item.badgeClass}`}
-                    style={{ fontSize: '0.68rem', padding: '2px 6px' }}
-                  >
-                    {item.badge}
-                  </span>
-                )}
+                  {item.urgentCount !== undefined && item.urgentCount > 0 && (
+                    <span
+                      style={{
+                        fontSize: '0.7rem',
+                        fontWeight: 600,
+                        backgroundColor: '#f1f5f9',
+                        color: '#334155',
+                        border: '1px solid var(--border-light)',
+                        padding: '1px 7px',
+                        borderRadius: '10px',
+                        minWidth: '18px',
+                        textAlign: 'center',
+                      }}
+                      title={`${item.urgentCount} Upcoming Deadlines`}
+                    >
+                      {item.urgentCount}
+                    </span>
+                  )}
+                </div>
               </Link>
             );
           })}
@@ -197,12 +242,12 @@ export default function Sidebar() {
           <div
             style={{
               marginTop: '20px',
-              padding: '6px 12px',
+              padding: '6px 12px 4px',
               fontSize: '0.72rem',
-              fontWeight: 800,
+              fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.06em',
-              color: '#71717a',
+              color: 'var(--text-muted)',
             }}
           >
             Sections / Disciplines
@@ -215,13 +260,13 @@ export default function Sidebar() {
               alignItems: 'center',
               gap: '10px',
               padding: '8px 12px',
-              borderRadius: '6px',
+              borderRadius: 'var(--radius-md)',
               fontSize: '0.84rem',
-              color: '#27272a',
+              color: '#475569',
               transition: 'background 0.15s ease',
             }}
           >
-            <Zap size={15} style={{ color: '#000000' }} />
+            <Zap size={16} style={{ color: '#64748b' }} />
             <span>Electrical Systems</span>
           </Link>
 
@@ -232,13 +277,13 @@ export default function Sidebar() {
               alignItems: 'center',
               gap: '10px',
               padding: '8px 12px',
-              borderRadius: '6px',
+              borderRadius: 'var(--radius-md)',
               fontSize: '0.84rem',
-              color: '#27272a',
+              color: '#475569',
               transition: 'background 0.15s ease',
             }}
           >
-            <Building2 size={15} style={{ color: '#000000' }} />
+            <Building2 size={16} style={{ color: '#64748b' }} />
             <span>Civil & Structural</span>
           </Link>
 
@@ -249,13 +294,13 @@ export default function Sidebar() {
               alignItems: 'center',
               gap: '10px',
               padding: '8px 12px',
-              borderRadius: '6px',
+              borderRadius: 'var(--radius-md)',
               fontSize: '0.84rem',
-              color: '#27272a',
+              color: '#475569',
               transition: 'background 0.15s ease',
             }}
           >
-            <Droplets size={15} style={{ color: '#000000' }} />
+            <Droplets size={16} style={{ color: '#64748b' }} />
             <span>Plumbing & MEP</span>
           </Link>
 
@@ -266,13 +311,13 @@ export default function Sidebar() {
               alignItems: 'center',
               gap: '10px',
               padding: '8px 12px',
-              borderRadius: '6px',
+              borderRadius: 'var(--radius-md)',
               fontSize: '0.84rem',
-              color: '#27272a',
+              color: '#475569',
               transition: 'background 0.15s ease',
             }}
           >
-            <Compass size={15} style={{ color: '#000000' }} />
+            <Compass size={16} style={{ color: '#64748b' }} />
             <span>Architecture & Façade</span>
           </Link>
         </div>
@@ -280,8 +325,8 @@ export default function Sidebar() {
         {/* User Card & Role Switcher Bar */}
         <div
           style={{
-            padding: '16px',
-            borderTop: '1px solid #e4e4e7',
+            padding: '14px 16px',
+            borderTop: '1px solid var(--border-light)',
             backgroundColor: '#ffffff',
           }}
         >
@@ -290,22 +335,26 @@ export default function Sidebar() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              marginBottom: '12px',
+              marginBottom: '10px',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={currentUser?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100'}
                 alt={currentUser?.name || 'User'}
-                style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover', border: '1px solid #000000' }}
+                style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--border-light)', flexShrink: 0 }}
               />
-              <div style={{ lineHeight: 1.2 }}>
-                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#000000' }}>
+              <div style={{ lineHeight: 1.2, minWidth: 0 }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {currentUser?.name || 'Guest User'}
                 </div>
-                <div style={{ fontSize: '0.72rem', color: '#71717a' }}>
-                  {isPM ? 'Project Manager' : `${currentUser?.discipline} Engineer`}
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {isPM
+                    ? 'Project Manager'
+                    : currentUser?.role === 'hod'
+                    ? `${currentUser?.discipline} Head (HOD)`
+                    : `${currentUser?.discipline} Specialist`}
                 </div>
               </div>
             </div>
@@ -317,9 +366,10 @@ export default function Sidebar() {
               style={{
                 padding: '6px',
                 borderRadius: '6px',
-                color: '#000000',
+                color: 'var(--text-muted)',
                 display: 'flex',
                 alignItems: 'center',
+                flexShrink: 0,
               }}
             >
               <LogOut size={16} />
@@ -332,12 +382,13 @@ export default function Sidebar() {
             className="btn btn-secondary btn-sm"
             style={{
               width: '100%',
-              fontSize: '0.78rem',
-              fontWeight: 700,
+              fontSize: '0.76rem',
+              fontWeight: 600,
+              gap: '6px',
             }}
           >
-            <RefreshCw size={13} />
-            <span>Switch Role (PM / Employee)</span>
+            <RefreshCw size={12} />
+            <span>Switch Role (PM / Lead / Member)</span>
           </button>
         </div>
       </aside>
